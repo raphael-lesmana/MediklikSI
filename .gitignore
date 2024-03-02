@@ -17,3 +17,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+.git_local_repo_credentials
+*.code-workspace
