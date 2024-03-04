@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PatientController;
+use App\Http\Controllers\PrescriptionController;
+use App\Http\Controllers\StaffController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +18,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(['auth'])->group(function() {
+    Route::redirect('/', '/dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'dashboard_index']);
+    Route::resource('patient', PatientController::class);
+    Route::resource('staff', StaffController::class);
+    Route::resource('prescriptions', PrescriptionController::class);
 });
+
+Route::get('/login', [UserController::class, 'login']);
