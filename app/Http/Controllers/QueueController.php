@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Patient;
+use App\Models\Queue;
 use Illuminate\Http\Request;
 
-class PatientController extends Controller
+class QueueController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $patients = Patient::all();
-        return view('patient', compact('patients'));
+        //
     }
 
     /**
@@ -21,7 +20,7 @@ class PatientController extends Controller
      */
     public function create()
     {
-        return view('patient_create');
+        //
     }
 
     /**
@@ -29,20 +28,13 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        $param = $request->validate([
-            'patient_name' => 'required',
-            'patient_dob' => 'required',
-            'patient_gender' => 'required',
-            'patient_phone' => 'required',
-        ]);
-        Patient::create($param);
-        return redirect()->route('patient.index');
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Patient $patient)
+    public function show(Queue $queue)
     {
         //
     }
@@ -50,7 +42,7 @@ class PatientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Patient $patient)
+    public function edit(Queue $queue)
     {
         //
     }
@@ -58,7 +50,7 @@ class PatientController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Patient $patient)
+    public function update(Request $request, Queue $queue)
     {
         //
     }
@@ -66,7 +58,7 @@ class PatientController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Patient $patient)
+    public function destroy(Queue $queue)
     {
         //
     }

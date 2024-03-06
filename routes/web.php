@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PrescriptionController;
+use App\Http\Controllers\QueueController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -18,12 +19,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth'])->group(function() {
+// Route::middleware(['auth'])->group(function() {
     Route::redirect('/', '/dashboard');
     Route::get('/dashboard', [DashboardController::class, 'dashboard_index']);
     Route::resource('patient', PatientController::class);
     Route::resource('staff', StaffController::class);
-    Route::resource('prescriptions', PrescriptionController::class);
-});
+    Route::resource('prescription', PrescriptionController::class);
+    Route::resource('queue', QueueController::class);
+// });
 
 Route::get('/login', [UserController::class, 'login']);

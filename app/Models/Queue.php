@@ -6,18 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Patient extends Model
+class Queue extends Model
 {
-    protected $fillable = [
-        'patient_name',
-        'patient_gender',
-        'patient_dob',
-        'patient_phone',
-    ];
     use HasFactory;
+    protected $fillable = [
+        'patient_id',
+        'staff_id',
+    ];
 
-    public function queue(): HasOne
+    public function patient(): HasOne
     {
-        return $this->hasOne(Queue::class);
+        return $this->hasOne(Patient::class);
     }
 }
