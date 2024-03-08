@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Staff;
+use App\Models\Medicine;
 use Illuminate\Http\Request;
 
-class StaffController extends Controller
+class MedicineController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('staff');
+        //
     }
 
     /**
@@ -20,7 +20,7 @@ class StaffController extends Controller
      */
     public function create()
     {
-        return view('staff_create');
+        //
     }
 
     /**
@@ -34,7 +34,7 @@ class StaffController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Staff $staff)
+    public function show(Medicine $medicine)
     {
         //
     }
@@ -42,7 +42,7 @@ class StaffController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Staff $staff)
+    public function edit(Medicine $medicine)
     {
         //
     }
@@ -50,7 +50,7 @@ class StaffController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Staff $staff)
+    public function update(Request $request, Medicine $medicine)
     {
         //
     }
@@ -58,7 +58,7 @@ class StaffController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Staff $staff)
+    public function destroy(Medicine $medicine)
     {
         //
     }

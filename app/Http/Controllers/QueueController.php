@@ -12,7 +12,7 @@ class QueueController extends Controller
      */
     public function index()
     {
-        //
+        return view('queue');
     }
 
     /**
@@ -20,7 +20,7 @@ class QueueController extends Controller
      */
     public function create()
     {
-        //
+        return view('queue_create');
     }
 
     /**

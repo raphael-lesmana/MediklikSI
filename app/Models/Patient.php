@@ -9,10 +9,11 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Patient extends Model
 {
     protected $fillable = [
-        'patient_name',
-        'patient_gender',
-        'patient_dob',
-        'patient_phone',
+        'name',
+        'gender',
+        'dob',
+        'phone',
+        'email',
     ];
     use HasFactory;
 
