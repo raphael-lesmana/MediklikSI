@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('transaction_headers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('patient_id')->constrained();
+            $table->unsignedBigInteger('receptionist_id');
+            $table->foreign('receptionist_id')->references('id')->on('users');
+            $table->integer('payment_type')->nullable();
             $table->timestamps();
         });
     }

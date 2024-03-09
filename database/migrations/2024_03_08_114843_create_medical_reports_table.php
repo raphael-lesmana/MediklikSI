@@ -13,6 +13,19 @@ return new class extends Migration
     {
         Schema::create('medical_reports', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('transaction_header_id')->constrained();
+            $table->foreignId('staff_id')->constrained();
+            $table->integer('systolic_blood_pressure')->nullable();
+            $table->integer('diastolic_blood_pressure')->nullable();
+            $table->integer('respiratory_rate')->nullable();
+            $table->integer('oxygen_saturation_level')->nullable();
+            $table->integer('body_temperature')->nullable();
+            $table->integer('height')->nullable();
+            $table->integer('weight')->nullable();
+            $table->string('patient_symptomps', 1000);
+            $table->string('diagnose', 5000);
+            $table->string('suggestion', 5000);
+            $table->foreign('prescription_id')->constrained()->nullable();
             $table->timestamps();
         });
     }
