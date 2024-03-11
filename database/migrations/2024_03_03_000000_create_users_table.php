@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('password');
-            $table->enum('gender', ['Laki-lak', 'Perempuan']);
+            $table->enum('gender', ['Laki-lak', 'Perempuan'])->nullable();
             $table->foreignId('role_id')->constrained();
-            $table->date('dob');
-            $table->date('start_date');
+            $table->date('dob')->nullable();
+            $table->date('start_date')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

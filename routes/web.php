@@ -18,12 +18,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware(['auth'])->group(function() {
+Route::get('/login', [UserController::class, 'login_index'])->name('login');
+Route::post('/login', [UserController::class, 'login'])->name('login');
+
+Route::middleware(['auth'])->group(function() {
     Route::redirect('/', '/dashboard');
-    Route::get('/dashboard', [DashboardController::class, 'dashboard_index']);
+    Route::get('/dashboard', [DashboardController::class, 'dashboard_index'])->name('dashboard');
     Route::resource('patient', PatientController::class);
     Route::resource('prescription', PrescriptionController::class);
     Route::resource('queue', QueueController::class);
-// });
-
-Route::get('/login', [UserController::class, 'login']);
+});

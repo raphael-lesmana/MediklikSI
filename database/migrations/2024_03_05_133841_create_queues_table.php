@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('patient_id')->unique()->constrained();
-            $table->foreignId('staff_id')->constrained();
+            $table->unsignedBigInteger('staff_id');
+            $table->foreign('staff_id')->references('id')->on('users');
         });
     }
 

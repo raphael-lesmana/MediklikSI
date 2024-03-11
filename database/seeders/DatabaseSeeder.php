@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +14,48 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        $admin_role = Role::create([
+            'name' => 'admin'
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $receptionist_role = Role::create([
+            'name' => 'receptionist'
+        ]);
+
+        $doctor_role = Role::create([
+            'name' => 'doctor'
+        ]);
+
+        $pharmacist_role = Role::create([
+            'name' => 'pharmacist'
+        ]);
+
+        User::create([
+            'name' => 'root',
+            'password' => 'password',
+            'role_id' => $admin_role->id,
+            'dob' => '1970-01-01',
+        ]);
+
+        User::create([
+            'name' => 'receptionist',
+            'password' => 'password',
+            'role_id' => $receptionist_role->id,
+            'dob' => '1970-01-01',
+        ]);
+
+        User::create([
+            'name' => 'doctor',
+            'password' => 'password',
+            'role_id' => $doctor_role->id,
+            'dob' => '1970-01-01',
+        ]);
+
+        User::create([
+            'name' => 'pharmacist',
+            'password' => 'password',
+            'role_id' => $pharmacist_role->id,
+            'dob' => '1970-01-01',
+        ]);
     }
 }
