@@ -27,4 +27,9 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('patient', PatientController::class);
     Route::resource('prescription', PrescriptionController::class);
     Route::resource('queue', QueueController::class);
+
+    /* Administrator routes */
+    Route::middleware(['admin'])->group(function() {
+        Route::get('/register', [UserController::class, 'register_index'])->name('register');
+    });
 });

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class admin
+class Receptionist
 {
     /**
      * Handle an incoming request.
@@ -15,8 +15,6 @@ class admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user()->role_id != 1)
-            return abort(403);
         return $next($request);
     }
 }

@@ -7,17 +7,17 @@
     <title>Document</title>
 </head>
 <body>
-    Patient create test
-    <form action={{route('patient.index')}} method="POST">
+    <h1>Register</h1>
+    <form action={{route('register')}} method="post">
         @csrf
-        <input type="text" name="patient_name" id="">
-        <input type="date" name="patient_dob" id="">
-        <input type="text" name="patient_phone" id="">
+        <input type="text" name="name" id="">
+        <input type="text" name="full_name" id="">
         <select name="patient_gender" id="">
             <option value="Laki-laki">Laki-laki</option>
             <option value="Perempuan">Perempuan</option>
         </select>
-        <button>Submit</button>
+        <input type="date" name="dob" id="">
+        <input type="date" name="start_date" id="">
     </form>
 </body>
 </html>
