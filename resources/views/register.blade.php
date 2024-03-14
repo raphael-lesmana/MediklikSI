@@ -12,12 +12,20 @@
         @csrf
         <input type="text" name="name" id="">
         <input type="text" name="full_name" id="">
-        <select name="patient_gender" id="">
+        <input type="password" name="password" id="">
+        <select name="role_id" id="">
+            <option value="1">Resepsionis</option>
+            <option value="2">Dokter</option>
+            <option value="3">Apoteker</option>
+            <option value="0">Administrator</option>
+        </select>
+        <select name="gender" id="">
             <option value="Laki-laki">Laki-laki</option>
             <option value="Perempuan">Perempuan</option>
         </select>
         <input type="date" name="dob" id="">
         <input type="date" name="start_date" id="">
+        <button type="submit">Register</button>
     </form>
 </body>
 </html>

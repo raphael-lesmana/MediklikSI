@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,5 +29,27 @@ class UserController extends Controller
         return back()->withErrors([
             'wrong_credentials' => 'Incorrect username/password'
         ]);
+    }
+
+    public function register_index()
+    {
+        return view('register');
+    }
+
+    public function register(Request $request)
+    {
+        $param = $request->validate([
+            'name' => 'required',
+            'full_name' => 'required',
+            'dob' => 'nullable',
+            'start_date' => 'nullable',
+            'gender' => 'required',
+            'role_id' => 'required',
+            'password' => 'required',
+        ]);
+
+        User::create($param);
+
+        return back();
     }
 }

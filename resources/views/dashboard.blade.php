@@ -7,6 +7,6 @@
     <title>Dashboard | Mediklik</title>
 </head>
 <body>
-    <h1>Welcome to Mediklik, {{Auth::user()}}</h1>
+    <h1>Welcome to Mediklik, {{Auth::user()->name}}</h1>
 </body>
 </html>

@@ -31,5 +31,6 @@ Route::middleware(['auth'])->group(function() {
     /* Administrator routes */
     Route::middleware(['admin'])->group(function() {
         Route::get('/register', [UserController::class, 'register_index'])->name('register');
+        Route::post('/register', [UserController::class, 'register'])->name('register');
     });
 });
