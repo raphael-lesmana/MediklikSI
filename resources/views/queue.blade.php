@@ -7,6 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <table>
+        @foreach ($queues as $queue)
+            <tr>
+                <td>{{$queue->id}}</td>
+            </tr>
+        @endforeach
+    </table>
 </body>
 </html>

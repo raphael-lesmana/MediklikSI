@@ -12,7 +12,8 @@ class QueueController extends Controller
      */
     public function index()
     {
-        return view('queue');
+        $queues = Queue::all();
+        return view('queue', compact('queues'));
     }
 
     /**

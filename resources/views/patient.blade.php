@@ -10,10 +10,10 @@
     <table>
         @foreach ($patients as $patient)
             <tr>
-                <td>{{$patient->patient_name}}</td>
-                <td>{{$patient->patient_dob}}</td>
-                <td>{{$patient->patient_gender}}</td>
-                <td>{{$patient->patient_phone}}</td>
+                <td>{{$patient->name}}</td>
+                <td>{{$patient->dob}}</td>
+                <td>{{$patient->gender}}</td>
+                <td>{{$patient->phone}}</td>
             </tr>
         @endforeach
     </table>

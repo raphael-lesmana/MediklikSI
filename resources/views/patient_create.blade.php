@@ -10,10 +10,10 @@
     Patient create test
     <form action={{route('patient.index')}} method="POST">
         @csrf
-        <input type="text" name="patient_name" id="">
-        <input type="date" name="patient_dob" id="">
-        <input type="text" name="patient_phone" id="">
-        <select name="patient_gender" id="">
+        <input type="text" name="name" id="">
+        <input type="date" name="dob" id="">
+        <input type="text" name="phone" id="">
+        <select name="gender" id="">
             <option value="Laki-laki">Laki-laki</option>
             <option value="Perempuan">Perempuan</option>
         </select>
