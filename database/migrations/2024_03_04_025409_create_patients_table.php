@@ -17,7 +17,7 @@ return new class extends Migration
             $table->enum('gender', ['Laki-laki', 'Perempuan']);
             $table->date('dob');
             $table->string('phone');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->timestamps();
         });
     }

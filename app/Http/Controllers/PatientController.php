@@ -30,10 +30,10 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         $param = $request->validate([
-            'patient_name' => 'required',
-            'patient_dob' => 'required',
-            'patient_gender' => 'required',
-            'patient_phone' => 'required',
+            'name' => 'required',
+            'dob' => 'required',
+            'gender' => 'required',
+            'phone' => 'required',
         ]);
         Patient::create($param);
         return redirect()->route('patient.index');

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Queue;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class QueueController extends Controller
@@ -21,7 +23,9 @@ class QueueController extends Controller
      */
     public function create()
     {
-        return view('queue_create');
+        $role_id = Role::where('name', 'doctor')->first()->id;
+        $staff = User::where('role_id', $role_id)->get();
+        return view('queue_create', compact('staff'));
     }
 
     /**
@@ -29,7 +33,12 @@ class QueueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $param = $request->validate([
+            'patient_id' => 'required',
+            'staff_id' => 'required',
+        ]);
+        Queue::create($param);
+        return redirect()->route('queue.index');
     }
 
     /**

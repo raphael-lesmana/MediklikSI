@@ -8,11 +8,13 @@
 </head>
 <body>
     <h1>Add patient to queue</h1>
-    <form action={{route('queue.index')}}>
+    <form action={{route('queue.index')}} method="POST">
         @csrf
-        <input type="text" name="name" id="" placeholder="name">
+        <input type="text" name="patient_id" id="" placeholder="name">
         <select name="staff_id" id="">
-            <option value="1">Test</option>
+            @foreach ($staff as $staff_member)
+                <option value={{$staff_member->id}}>{{$staff_member->full_name}}</option>
+            @endforeach
         </select>
         <button type="submit">Create</button>
     </form>

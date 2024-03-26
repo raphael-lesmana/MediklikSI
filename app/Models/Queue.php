@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Queue extends Model
 {
@@ -14,8 +14,12 @@ class Queue extends Model
         'staff_id',
     ];
 
-    public function patient(): HasOne
+    public function patient(): BelongsTo
     {
-        return $this->hasOne(Patient::class);
+        return $this->belongsTo(Patient::class);
+    }
+    public function staff(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

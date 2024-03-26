@@ -10,7 +10,8 @@
     <table>
         @foreach ($queues as $queue)
             <tr>
-                <td>{{$queue->id}}</td>
+                <td>{{$queue->patient()->first()->name}}</td>
+                <td>{{$queue->staff()->first()->full_name}}</td>
             </tr>
         @endforeach
     </table>

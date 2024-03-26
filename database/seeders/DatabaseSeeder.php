@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'root',
+            'full_name' => fake()->name(),
             'password' => 'password',
             'role_id' => $admin_role->id,
             'dob' => '1970-01-01',
@@ -39,6 +40,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'receptionist',
+            'full_name' => fake()->name(),
             'password' => 'password',
             'role_id' => $receptionist_role->id,
             'dob' => '1970-01-01',
@@ -46,6 +48,16 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'doctor',
+            'full_name' => fake()->name(),
+            'password' => 'password',
+            'role_id' => $doctor_role->id,
+            'dob' => '1970-01-01',
+        ]);
+
+
+        User::create([
+            'name' => 'doctor2',
+            'full_name' => fake()->name(),
             'password' => 'password',
             'role_id' => $doctor_role->id,
             'dob' => '1970-01-01',
@@ -53,6 +65,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'pharmacist',
+            'full_name' => fake()->name(),
             'password' => 'password',
             'role_id' => $pharmacist_role->id,
             'dob' => '1970-01-01',
