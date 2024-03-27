@@ -8,12 +8,25 @@
 </head>
 <body>
     <table>
-        @foreach ($queues as $queue)
+        @if (Gate::allows('receptionist') || Gate::allows('admin'))
+            @foreach ($queues as $queue)
             <tr>
                 <td>{{$queue->patient()->first()->name}}</td>
                 <td>{{$queue->staff()->first()->full_name}}</td>
             </tr>
-        @endforeach
+            @endforeach
+        @elseif (Gate::allows('doctor'))
+            @foreach ($queues as $queue)
+                @if ($queue->staff_id == Auth::id())
+                    <tr>
+                        <td>{{$queue->patient()->first()->name}}</td>
+                        <td>{{$queue->staff()->first()->full_name}}</td>
+                        <td>{{$queue->created_at}}</td>
+                    </tr>
+                @endif
+            @endforeach
+        @endif
+        
     </table>
 </body>
 </html>
