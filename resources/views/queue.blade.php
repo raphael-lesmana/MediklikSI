@@ -7,6 +7,9 @@
     <title>Document</title>
 </head>
 <body>
+    @if (Gate::allows('doctor') && empty($current_queue))
+        <h1>Not currently processing any queue</h1>
+    @endif
     <table>
         @if (Gate::allows('receptionist') || Gate::allows('admin'))
             @foreach ($queues as $queue)

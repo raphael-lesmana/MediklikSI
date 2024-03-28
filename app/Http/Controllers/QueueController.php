@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Queue;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\UserQueue;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class QueueController extends Controller
 {
@@ -15,7 +17,8 @@ class QueueController extends Controller
     public function index()
     {
         $queues = Queue::all();
-        return view('queue', compact('queues'));
+        $current_queue = UserQueue::where('user_id', Auth::id())->first();
+        return view('queue', compact('queues', 'current_queue'));
     }
 
     /**

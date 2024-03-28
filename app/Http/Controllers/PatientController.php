@@ -36,7 +36,7 @@ class PatientController extends Controller
             'phone' => 'required',
         ]);
         Patient::create($param);
-        return redirect()->route('patient.index');
+        return redirect()->route('patient.create');
     }
 
     /**
