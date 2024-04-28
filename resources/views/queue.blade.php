@@ -9,6 +9,11 @@
 <body>
     @if (Gate::allows('doctor') && empty($current_queue))
         <h1>Not currently processing any queue</h1>
+    @else
+        <h1>Currently serving</h1>
+        <ul>
+            <li>{{$current_queue->queue->patient->name}}</li>
+        </ul>
     @endif
     <table>
         @if (Gate::allows('receptionist') || Gate::allows('admin'))
@@ -29,7 +34,13 @@
                 @endif
             @endforeach
         @endif
-        
     </table>
+    @if (Gate::allows('doctor') && empty($current_queue))
+        <form action={{route('queue.index')}} method="post">
+            @csrf
+            <input type="hidden" name="action" value="next">
+            <button type="submit">Next queue</button>
+        </form>
+    @endif
 </body>
 </html>

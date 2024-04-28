@@ -17,8 +17,22 @@ class QueueController extends Controller
     public function index()
     {
         $queues = Queue::all();
-        $current_queue = UserQueue::where('user_id', Auth::id())->first();
+        $current_queue = UserQueue::where('user_id', Auth::id())->orderBy('updated_at')->first();
         return view('queue', compact('queues', 'current_queue'));
+    }
+
+    public function actions(Request $request)
+    {
+        $action = $request->action;
+        if ($action == 'next')
+        {
+            $current_queue = Queue::orderBy('updated_at')->first();
+            UserQueue::create([
+                'queue_id' => $current_queue->id,
+                'user_id' => Auth::id(),
+            ]);
+            return redirect()->back();
+        }
     }
 
     /**
@@ -36,6 +50,9 @@ class QueueController extends Controller
      */
     public function store(Request $request)
     {
+        if (!empty($request->action))
+            return $this->actions($request);
+
         $param = $request->validate([
             'patient_id' => 'required',
             'staff_id' => 'required',
