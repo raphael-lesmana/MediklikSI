@@ -66,7 +66,13 @@ class QueueController extends Controller
      */
     public function show(Queue $queue)
     {
-        //
+        return view('queue_show', compact('queue'));
+    }
+
+    public function current()
+    {
+        $current_queue = Auth::user()->userqueue->queue;
+        return $this->show($current_queue);
     }
 
     /**

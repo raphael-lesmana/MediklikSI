@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function() {
     Route::redirect('/', '/dashboard');
     Route::get('/dashboard', [DashboardController::class, 'dashboard_index'])->name('dashboard');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+    Route::get('/queue/current', [QueueController::class, 'current'])->name('queue.current');
     Route::resource('patient', PatientController::class);
     Route::resource('prescription', PrescriptionController::class);
     Route::resource('queue', QueueController::class);
