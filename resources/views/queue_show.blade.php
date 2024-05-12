@@ -14,4 +14,10 @@
         <li>Patient DOB: {{$queue->patient->dob}}</li>
     </ul>
 </body>
+@if ($current)
+    <form action={{route('queue.complete')}} method="post">
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <button type="submit">Complete</button>
+    </form>
+@endif
 </html>
