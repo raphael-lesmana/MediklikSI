@@ -14,5 +14,10 @@ class MedicalReport extends Model
     {
         return $this->belongsTo(TransactionHeader::class);
     }
+
+    public function doctor(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'staff_id');
+    }
 }
 
