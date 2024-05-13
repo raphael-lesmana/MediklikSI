@@ -22,4 +22,9 @@ class Patient extends Model
     {
         return $this->hasOne(Queue::class);
     }
+
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(TransactionHeader::class);
+    }
 }

@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('patient_symptomps', 1000);
             $table->string('diagnose', 5000);
             $table->string('suggestion', 5000);
-            $table->foreignId('prescription_id')->constrained()->nullable();
+            $table->foreignId('prescription_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

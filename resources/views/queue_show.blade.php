@@ -13,11 +13,13 @@
         <li>Patient name: {{$queue->patient->name}}</li>
         <li>Patient DOB: {{$queue->patient->dob}}</li>
     </ul>
-</body>
-@if ($current)
+    <h1>{{$queue->patient->transactions}}</h1>
+    {{-- @if ($current)
     <form action={{route('queue.complete')}} method="post">
+        @csrf
         <textarea name="" id="" cols="30" rows="10"></textarea>
         <button type="submit">Complete</button>
     </form>
-@endif
+    @endif --}}
+</body>
 </html>
