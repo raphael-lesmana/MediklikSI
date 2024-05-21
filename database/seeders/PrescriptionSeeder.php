@@ -12,6 +12,6 @@ class PrescriptionSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        \App\Models\MedicalReport::factory(10)->create();
     }
 }

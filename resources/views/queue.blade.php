@@ -9,11 +9,13 @@
 <body>
     @if (Gate::allows('doctor') && empty($current_queue))
         <h1>Not currently processing any queue</h1>
-    @else
+    @elseif (Gate::allows('doctor') && !empty($current_queue))
         <h1>Currently serving</h1>
         <ul>
             <li>{{$current_queue->queue->patient->name}}</li>
         </ul>
+    @elseif (Gate::allows('receptionist'))
+        <a href="/queue/create">Create new queue</a>
     @endif
     <table>
         @if (Gate::allows('receptionist') || Gate::allows('admin'))

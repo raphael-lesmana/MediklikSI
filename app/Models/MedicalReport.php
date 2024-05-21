@@ -10,14 +10,35 @@ class MedicalReport extends Model
 {
     use HasFactory;
 
-    public function transaction(): BelongsTo
+    protected $fillable = [
+        'patient_id',
+        'staff_id',
+        'systolic_blood_pressure',
+        'diastolic_blood_pressure',
+        'respiratory_rate',
+        'oxygen_saturation_level',
+        'body_temperature',
+        'height',
+        'weight',
+        'symptoms',
+        'diagnosis',
+        'suggestion',
+        'prescription_id'
+    ];
+
+    public function patient(): BelongsTo
     {
-        return $this->belongsTo(TransactionHeader::class);
+        return $this->belongsTo(Patient::class);
     }
 
     public function doctor(): BelongsTo
     {
         return $this->belongsTo(User::class, 'staff_id');
+    }
+
+    public function prescription(): BelongsTo
+    {
+        return $this->belongsTo(PrescriptionHeader::class);
     }
 }
 

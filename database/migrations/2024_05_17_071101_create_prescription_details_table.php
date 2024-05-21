@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('medicine_transactions', function (Blueprint $table) {
-            $table->foreignId('prescription_id')->constrained();
+        Schema::create('prescription_details', function (Blueprint $table) {
+            $table->foreignId('prescription_header_id')->constrained();
             $table->foreignId('medicine_id')->constrained();
-            $table->integer('quantity');
+            $table->string('dose');
+            $table->string('amount');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('medicine_transactions');
+        Schema::dropIfExists('prescription_details');
     }
 };

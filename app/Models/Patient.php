@@ -27,4 +27,9 @@ class Patient extends Model
     {
         return $this->hasMany(TransactionHeader::class);
     }
+
+    public function medical_report(): HasMany
+    {
+        return $this->hasMany(MedicalReport::class);
+    }
 }

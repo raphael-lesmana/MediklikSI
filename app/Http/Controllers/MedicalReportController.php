@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Medicine;
 use Illuminate\Http\Request;
 
-class MedicineController extends Controller
+class MedicalReportController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $patients = Medicine::all();
-        return view('patient', compact('patients'));
+        //
     }
 
     /**
@@ -29,13 +27,13 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Medicine $medicine)
+    public function show(string $id)
     {
         //
     }
@@ -43,7 +41,7 @@ class MedicineController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Medicine $medicine)
+    public function edit(string $id)
     {
         //
     }
@@ -51,7 +49,7 @@ class MedicineController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Medicine $medicine)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -59,7 +57,7 @@ class MedicineController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Medicine $medicine)
+    public function destroy(string $id)
     {
         //
     }

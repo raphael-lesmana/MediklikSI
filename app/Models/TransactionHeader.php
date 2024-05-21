@@ -11,11 +11,6 @@ class TransactionHeader extends Model
 {
     use HasFactory;
 
-    public function medical_report(): HasMany
-    {
-        return $this->hasMany(MedicalReport::class);
-    }
-
     public function receptionist(): BelongsTo
     {
         return $this->belongsTo(User::class, 'receptionist_id');

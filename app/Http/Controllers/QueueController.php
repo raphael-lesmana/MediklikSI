@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Queue;
 use App\Models\Role;
+use App\Models\TransactionHeader;
 use App\Models\User;
 use App\Models\UserQueue;
 use Illuminate\Http\Request;
@@ -64,15 +65,21 @@ class QueueController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Queue $queue, $current = false)
+    public function show_wrapper(Queue $queue, $current = false)
     {
         return view('queue_show', compact('queue', 'current'));
+    }
+
+    public function show(Queue $queue)
+    {
+        $current_queue = Auth::user()->userqueue->queue;
+        return $this->show_wrapper($queue, $current_queue->id == $queue->id);
     }
 
     public function current()
     {
         $current_queue = Auth::user()->userqueue->queue;
-        return $this->show($current_queue, true);
+        return $this->show_wrapper($current_queue, true);
     }
 
     /**

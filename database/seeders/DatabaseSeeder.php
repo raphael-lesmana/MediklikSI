@@ -70,5 +70,11 @@ class DatabaseSeeder extends Seeder
             'role_id' => $pharmacist_role->id,
             'dob' => '1970-01-01',
         ]);
+
+        $this->call([
+            PatientSeeder::class,
+            MedicineSeeder::class,
+            PrescriptionSeeder::class,
+        ]);
     }
 }

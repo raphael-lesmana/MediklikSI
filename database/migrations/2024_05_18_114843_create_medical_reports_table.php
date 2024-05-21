@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('medical_reports', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('transaction_header_id')->constrained();
+            $table->foreignId('patient_id')->constrained();
             $table->unsignedBigInteger('staff_id');
             $table->foreign('staff_id')->references('id')->on('users');
             $table->integer('systolic_blood_pressure')->nullable();
@@ -23,10 +23,10 @@ return new class extends Migration
             $table->integer('body_temperature')->nullable();
             $table->integer('height')->nullable();
             $table->integer('weight')->nullable();
-            $table->string('patient_symptomps', 1000);
-            $table->string('diagnose', 5000);
+            $table->string('symptoms', 1000);
+            $table->string('diagnosis', 5000);
             $table->string('suggestion', 5000);
-            $table->foreignId('prescription_id')->nullable()->constrained();
+            $table->foreignId('prescription_header_id')->nullable()->constrained();
             $table->timestamps();
         });
     }
