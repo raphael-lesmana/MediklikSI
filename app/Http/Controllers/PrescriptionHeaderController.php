@@ -12,7 +12,8 @@ class PrescriptionHeaderController extends Controller
      */
     public function index()
     {
-        //
+        $prescriptions = PrescriptionHeader::all();
+        return view('prescription', compact('prescriptions'));
     }
 
     /**

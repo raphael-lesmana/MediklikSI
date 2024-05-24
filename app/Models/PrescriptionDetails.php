@@ -12,6 +12,7 @@ class PrescriptionDetails extends Model
     use HasFactory;
 
     protected $fillable = [
+        'prescription_header_id',
         'medicine_id',
         'dose',
         'amount',

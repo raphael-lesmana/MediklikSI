@@ -12,6 +12,7 @@ class PrescriptionHeader extends Model
 
     protected $fillable = [
         'notes',
+        'medical_report_id',
     ];
 
     public function prescription_details(): HasMany

@@ -23,7 +23,6 @@ class MedicalReport extends Model
         'symptoms',
         'diagnosis',
         'suggestion',
-        'prescription_id'
     ];
 
     public function patient(): BelongsTo

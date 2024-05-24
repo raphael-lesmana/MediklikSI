@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>Queue Information</title>
 </head>
 <body>
@@ -63,7 +64,7 @@
         </table>
     @endforeach
     @if ($current)
-    <form action="">
+    <form action={{route('queue.current')}} method="POST">
         @csrf
         <input type="number" name="systolic_blood_pressure">
         <label for="systolic_blood_pressure">systolic blood pressure</label><br>
@@ -81,9 +82,46 @@
         <label for="weight">weight</label><br>
         <textarea name="symptoms" cols="30" rows="10" placeholder="symptoms"></textarea><br>
         <textarea name="diagnosis" cols="30" rows="10" placeholder="diagnosis"></textarea><br>
-        <textarea name="suggestion" cols="30" rows="10" placeholder="suggestion"></textarea>
+        <textarea name="suggestion" cols="30" rows="10" placeholder="suggestion"></textarea><br>
+        <fieldset id="prescription_field">
+            <input type="checkbox" name="enable_prescription" id=""><label for="enable_prescription">Attach a prescription</label><br>
+            <input type="hidden" name="prescription_count" id="prescription_count" value="1">
+            <select name="medicine_0" id="medicine_0">
+                @foreach ($medicines as $medicine)
+                    <option value={{$medicine->id}}>{{$medicine->name}}</option>
+                @endforeach
+            </select><input type="text" name="dose_0" id="" placeholder="dose"><input type="text" name="amount_0" id="" placeholder="amount"><button id="add_prescription" type="button">+</button>
+        </fieldset>
         <button type="submit">Create medical report</button>
     </form>
     @endif
+
+    <script>
+        $(document).ready(function(){
+            let cur_idx = 1;
+            $("#add_prescription").click(function(){
+                let medicine_select = $("<select></select>");
+                let dose = $("<input></input>");
+                let amount = $("<input></input>");
+                medicine_select.attr({
+                    name: 'medicine_' + cur_idx
+                });
+                dose.attr({
+                    type: "text",
+                    name: "dose_" + cur_idx,
+                    placeholder: "dose"
+                });
+                amount.attr({
+                    type: "text",
+                    name: "amount_" + cur_idx,
+                    placeholder: "amount"
+                });
+                $('#prescription_count').attr('value', ++cur_idx);
+                $('#medicine_0 option').clone().appendTo(medicine_select);
+                $('#add_prescription').before("<br>", medicine_select, dose, amount);
+            });
+        });
+    </script>
+
 </body>
 </html>

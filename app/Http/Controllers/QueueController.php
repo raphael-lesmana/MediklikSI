@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MedicalReport;
+use App\Models\Medicine;
+use App\Models\PrescriptionDetails;
+use App\Models\PrescriptionHeader;
 use App\Models\Queue;
 use App\Models\Role;
 use App\Models\TransactionHeader;
@@ -67,7 +71,13 @@ class QueueController extends Controller
      */
     public function show_wrapper(Queue $queue, $current = false)
     {
-        return view('queue_show', compact('queue', 'current'));
+        if ($current)
+        {
+            $medicines = Medicine::all();
+            return view('queue_show', compact('queue', 'current', 'medicines'));
+        }
+        else
+            return view('queue_show', compact('queue', 'current'));
     }
 
     public function show(Queue $queue)
@@ -80,6 +90,44 @@ class QueueController extends Controller
     {
         $current_queue = Auth::user()->userqueue->queue;
         return $this->show_wrapper($current_queue, true);
+    }
+
+    public function finish_current(Request $request)
+    {
+        $current_queue = Auth::user()->userqueue->queue;
+        MedicalReport::create([
+            'patient_id' => $current_queue->patient->id,
+            'staff_id' => Auth::id(),
+            'systolic_blood_pressure' => $request->systolic_blood_pressure,
+            'diastolic_blood_pressure' => $request->diastolic_blood_pressure,
+            'respiratory_rate' => $request->respiratory_rate,
+            'oxygen_saturation_level' => $request->oxygen_saturation_level,
+            'body_temperature' => $request->body_temperature,
+            'height' => $request->height,
+            'weight' => $request->weight,
+            'symptoms' => $request->symptoms,
+            'diagnosis' => $request->diagnosis,
+            'suggestion' => $request->suggestion,
+        ]);
+
+        if ($request->enable_prescription)
+        {
+            $n = $request->prescription_count;
+            $prescription_header = PrescriptionHeader::create([
+
+            ]);
+            for ($i = 0; $i < $n; $i++)
+            {
+                PrescriptionDetails::create([
+                    'prescription_header_id' => $prescription_header->id,
+                    'medicine_id' => $request['medicine_' . $i],
+                    'dose' => $request['dose_' . $i],
+                    'amount' => $request['amount_' . $i],
+                ]);
+            }
+        }
+
+        $transaction = TransactionHeader::create();
     }
 
     /**
