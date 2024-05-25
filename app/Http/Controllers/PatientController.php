@@ -52,7 +52,7 @@ class PatientController extends Controller
      */
     public function edit(Patient $patient)
     {
-        //
+        return view('patient_edit', compact('patient'));
     }
 
     /**
@@ -60,7 +60,18 @@ class PatientController extends Controller
      */
     public function update(Request $request, Patient $patient)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'dob' => 'required',
+            'gender' => 'required',
+            'phone' => 'required',
+        ]);
+        $patient->name = $request->name;
+        $patient->dob = $request->dob;
+        $patient->gender = $request->gender;
+        $patient->phone = $request->phone;
+        $patient->save();
+        return redirect()->route('patient.show', ['patient' => $patient]);
     }
 
     /**

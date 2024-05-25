@@ -94,8 +94,9 @@ class QueueController extends Controller
 
     public function finish_current(Request $request)
     {
-        $current_queue = Auth::user()->userqueue->queue;
-        MedicalReport::create([
+        $current_userqueue = Auth::user()->userqueue; 
+        $current_queue = $current_userqueue->queue;
+        $medical_report = MedicalReport::create([
             'patient_id' => $current_queue->patient->id,
             'staff_id' => Auth::id(),
             'systolic_blood_pressure' => $request->systolic_blood_pressure,
@@ -114,7 +115,7 @@ class QueueController extends Controller
         {
             $n = $request->prescription_count;
             $prescription_header = PrescriptionHeader::create([
-
+                'medical_report_id' => $medical_report->id,
             ]);
             for ($i = 0; $i < $n; $i++)
             {
@@ -126,8 +127,10 @@ class QueueController extends Controller
                 ]);
             }
         }
-
-        $transaction = TransactionHeader::create();
+        $current_userqueue->delete();
+        $current_queue->delete();
+        //TransactionHeader::create();
+        return redirect('queue.index');
     }
 
     /**
