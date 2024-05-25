@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_queues', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('queue_id');
             $table->foreignId('user_id');
             $table->timestamps();
-            $table->primary(['queue_id', 'user_id']);
         });
     }
 

@@ -22,7 +22,7 @@
                     {{$prescription->status}}
                 </td>
                 <td>
-                    <a href={{route('prescription.show', ['id' => $prescription->id])}}></a>
+                    <a href={{route('prescription_header.show', ['prescription' => $prescription])}}></a>
                 </td>
             </tr>
             @endforeach

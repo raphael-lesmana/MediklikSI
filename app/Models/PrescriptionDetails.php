@@ -22,4 +22,9 @@ class PrescriptionDetails extends Model
     {
         return $this->belongsTo(PrescriptionHeader::class);
     }
+
+    public function medicine(): BelongsTo
+    {
+        return $this->belongsTo(Medicine::class);
+    }
 }

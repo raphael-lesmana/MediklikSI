@@ -123,6 +123,7 @@ class QueueController extends Controller
                     'prescription_header_id' => $prescription_header->id,
                     'medicine_id' => $request['medicine_' . $i],
                     'dose' => $request['dose_' . $i],
+                    'status' => 'Pending',
                     'amount' => $request['amount_' . $i],
                 ]);
             }
@@ -130,7 +131,7 @@ class QueueController extends Controller
         $current_userqueue->delete();
         $current_queue->delete();
         //TransactionHeader::create();
-        return redirect('queue.index');
+        return redirect()->route('queue.index');
     }
 
     /**

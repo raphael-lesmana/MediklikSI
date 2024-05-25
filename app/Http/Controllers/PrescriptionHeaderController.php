@@ -35,17 +35,17 @@ class PrescriptionHeaderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PrescriptionHeader $prescriptionHeader)
+    public function show(PrescriptionHeader $prescription)
     {
-        //
+        return view('prescription_show', compact('prescription'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PrescriptionHeader $prescriptionHeader)
+    public function edit(PrescriptionHeader $prescription)
     {
-        //
+        return view('prescription_edit', compact('prescription'));
     }
 
     /**
