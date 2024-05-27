@@ -12,7 +12,7 @@
     @elseif (Gate::allows('doctor') && !empty($current_queue))
         <h1>Currently serving</h1>
         <ul>
-            <li>{{$current_queue->queue->patient->name}}</li>
+            <li><a href="{{route('queue.current')}}">{{$current_queue->queue->patient->name}}</a></li>
         </ul>
     @elseif (Gate::allows('receptionist'))
         <a href="/queue/create">Create new queue</a>

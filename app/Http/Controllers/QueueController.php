@@ -116,6 +116,7 @@ class QueueController extends Controller
             $n = $request->prescription_count;
             $prescription_header = PrescriptionHeader::create([
                 'medical_report_id' => $medical_report->id,
+                'status' => 'Pending',
             ]);
             for ($i = 0; $i < $n; $i++)
             {
@@ -123,14 +124,16 @@ class QueueController extends Controller
                     'prescription_header_id' => $prescription_header->id,
                     'medicine_id' => $request['medicine_' . $i],
                     'dose' => $request['dose_' . $i],
-                    'status' => 'Pending',
                     'amount' => $request['amount_' . $i],
                 ]);
             }
         }
+        TransactionHeader::create([
+            'patient_id' => $current_queue->patient->id,
+        ]);
+
         $current_userqueue->delete();
         $current_queue->delete();
-        //TransactionHeader::create();
         return redirect()->route('queue.index');
     }
 

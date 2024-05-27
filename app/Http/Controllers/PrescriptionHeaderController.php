@@ -51,9 +51,11 @@ class PrescriptionHeaderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PrescriptionHeader $prescriptionHeader)
+    public function update(Request $request, PrescriptionHeader $prescription)
     {
-        //
+        $prescription->status = $request->status;
+        $prescription->save();
+        return redirect()->route('prescription_header.index');
     }
 
     /**

@@ -11,6 +11,12 @@ class TransactionHeader extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'patient_id',
+        'receptionist_id',
+        'payment_type'
+    ];
+
     public function receptionist(): BelongsTo
     {
         return $this->belongsTo(User::class, 'receptionist_id');

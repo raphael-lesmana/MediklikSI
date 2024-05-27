@@ -10,7 +10,7 @@
     <form action="{{route('prescription_header.update', ['prescription' => $prescription])}}" method="POST">
         @method('PATCH')
         @csrf
-        <select name="gender" id="" value="{{$prescription->status}}"><label for="name">Gender</label><br>
+        <select name="status" id="" value="{{$prescription->status}}"><label for="name">Gender</label><br>
             <option value="Pending"
             @if ($prescription->status == "Pending")
                 selected

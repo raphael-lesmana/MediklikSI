@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('medical_report_id')->constrained();
             $table->string('notes')->nullable();
-            $table->enum('stauts', ['Pending', 'Processing', 'Ready']);
+            $table->enum('status', ['Pending', 'Processing', 'Ready']);
             $table->timestamps();
         });
     }
