@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PrescriptionHeaderController;
 use App\Http\Controllers\QueueController;
+use App\Http\Controllers\TransactionHeaderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,7 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/queue/current', [QueueController::class, 'finish_current'])->name('queue.current');
     Route::resource('patient', PatientController::class);
     Route::resource('prescription', PrescriptionHeaderController::class)->names('prescription_header');
+    Route::resource('transaction', TransactionHeaderController::class)->names('transaction_header');
     Route::resource('queue', QueueController::class);
 
     /* Administrator routes */

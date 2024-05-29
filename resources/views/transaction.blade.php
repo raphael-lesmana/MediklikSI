@@ -8,6 +8,14 @@
 </head>
 <body>
     <h1>Unprocessed Transactions</h1>
-    
+    @if (sizeof($transactions) > 0)
+        <ul>
+            @foreach ($transactions as $transaction)
+                <li>{{$transaction->id}} {{$transaction->patient->name}}</li>
+            @endforeach
+        </ul>
+    @else
+        
+    @endif
 </body>
 </html>
