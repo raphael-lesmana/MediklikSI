@@ -14,7 +14,8 @@ class TransactionHeader extends Model
     protected $fillable = [
         'patient_id',
         'receptionist_id',
-        'payment_type'
+        'payment_type',
+        'completed',
     ];
 
     public function receptionist(): BelongsTo

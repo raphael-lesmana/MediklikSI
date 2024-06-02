@@ -35,25 +35,29 @@ class TransactionHeaderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(TransactionHeader $transaction)
     {
-        //
+        return view('transaction_show', compact('transaction'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(TransactionHeader $transaction)
     {
-        //
+        return view('transaction_edit', compact('transaction'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, TransactionHeader $transaction)
     {
-        //
+        $transaction->receptionist_id = Auth::id();
+        $transaction->payment_type = $request->payment_type;
+        $transaction->completed = $request->transactionr;
+        $transaction->save();
+        return redirect()->route('transaction.show', ['transaction' => $transaction]);
     }
 
     /**

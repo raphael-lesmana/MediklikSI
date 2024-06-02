@@ -15,7 +15,7 @@
             @endforeach
         </ul>
     @else
-        
+        No Unprocessed Transactions
     @endif
 </body>
 </html>

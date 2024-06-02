@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('receptionist_id')->nullable();
             $table->foreign('receptionist_id')->references('id')->on('users');
             $table->integer('payment_type')->nullable();
+            $table->boolean('completed');
             $table->timestamps();
         });
     }
