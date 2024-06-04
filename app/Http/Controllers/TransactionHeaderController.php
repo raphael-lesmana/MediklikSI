@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ServiceTransaction;
 use App\Models\TransactionHeader;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionHeaderController extends Controller
 {
@@ -37,7 +39,8 @@ class TransactionHeaderController extends Controller
      */
     public function show(TransactionHeader $transaction)
     {
-        return view('transaction_show', compact('transaction'));
+        $services = $transaction->service_transaction;
+        return view('transaction_show', compact('transaction', 'services'));
     }
 
     /**
@@ -55,9 +58,19 @@ class TransactionHeaderController extends Controller
     {
         $transaction->receptionist_id = Auth::id();
         $transaction->payment_type = $request->payment_type;
-        $transaction->completed = $request->transactionr;
+        $transaction->completed = $request->completed == 'ON';
         $transaction->save();
-        return redirect()->route('transaction.show', ['transaction' => $transaction]);
+        $n = $request->service_count;
+        for ($i = 0; $i < $n; $i++)
+        {
+            ServiceTransaction::create([
+                'transaction_header_id' => $transaction->id,
+                'service_description' => $request['service_' . $i],
+                'service_price' => $request['price_' . $i],
+            ]);
+        }
+
+        return redirect()->route('transaction_header.show', ['transaction' => $transaction]);
     }
 
     /**

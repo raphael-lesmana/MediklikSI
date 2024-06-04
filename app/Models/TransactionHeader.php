@@ -27,4 +27,9 @@ class TransactionHeader extends Model
     {
         return $this->belongsTo(Patient::class);
     }
+
+    public function service_transaction(): HasMany
+    {
+        return $this->hasMany(ServiceTransaction::class);
+    }
 }

@@ -13,10 +13,14 @@
         @method('PATCH')
         @csrf
         <fieldset>
-            <label for="confirmed">Confirmed: </label>
-            <input type="checkbox" name="confirmed" id="" @checked($transaction->confirmed)><br>
-            <label for="payment">Payment method: </label>
-            <input type="number" name="payment" id="" value="{{$transaction->payment}}"><br>
+            <label for="completed">Completed: </label>
+            <input type="checkbox" name="completed" id="" @checked($transaction->completed)><br>
+            <label for="payment_method">Payment method: </label>
+            <select name="payment_method" id="" value="{{$transaction->payment_method}}">
+                <option value="Credit" @selected($transaction->payment_method == 'Credit')>Credit</option>
+                <option value="Debit" @selected($transaction->payment_method == 'Debit')>Debit</option>
+                <option value="Cash" @selected($transaction->payment_method == 'Cash')>Cash</option>
+            </select>
         </fieldset>
         <fieldset>
             <input type="hidden" name="service_count" id="service_count" value="1">

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('patient_id')->constrained();
             $table->unsignedBigInteger('receptionist_id')->nullable();
             $table->foreign('receptionist_id')->references('id')->on('users');
-            $table->integer('payment_type')->nullable();
-            $table->boolean('completed');
+            $table->enum('payment_type', ['Credit', 'Debit', 'Cash'])->nullable();
+            $table->boolean('completed')->default(false);
             $table->timestamps();
         });
     }

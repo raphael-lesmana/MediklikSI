@@ -10,13 +10,24 @@
     <h1>Transaction Info</h1>
     <ul>
         <li>Patient name: {{$transaction->patient->name}}</li>
-        <li>Complete: {{$transaction->completed}}</li>
+        <li>Completed: {{$transaction->completed}}</li>
     </ul>
     <h2>Services</h2>
+    @if (sizeof($services) > 0)
     <table>
-        {{-- @foreach ($collection as $item)
-            
-        @endforeach --}}
+        <tr>
+            <th>Service description</th>
+            <th>Service price</th>
+        </tr>
+        @foreach ($services as $service)
+            <tr>
+                <td>{{$service->service_description}}</td>
+                <td>{{$service->service_price}}</td>
+            </tr>
+        @endforeach
     </table>
+    @else
+        None
+    @endif
 </body>
 </html>

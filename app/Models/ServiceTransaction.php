@@ -10,6 +10,12 @@ class ServiceTransaction extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'service_description',
+        'service_price',
+        'transaction_header_id',
+    ];
+
     public function transaction_header(): BelongsTo
     {
         return $this->belongsTo(TransactionHeader::class);
