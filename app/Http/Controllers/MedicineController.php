@@ -12,8 +12,8 @@ class MedicineController extends Controller
      */
     public function index()
     {
-        $patients = Medicine::all();
-        return view('patient', compact('patients'));
+        $medicines = Medicine::all();
+        return view('medicine', compact('medicines'));
     }
 
     /**
@@ -21,7 +21,7 @@ class MedicineController extends Controller
      */
     public function create()
     {
-        //
+        return view('medicine_create');
     }
 
     /**
@@ -29,7 +29,13 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Medicine::create([
+            'name' => $request->name,
+            'stock' => $request->stock,
+            'form' => $request->form,
+            'price' => $request->price, 
+        ]);
+        return redirect()->route('medicine_create');
     }
 
     /**

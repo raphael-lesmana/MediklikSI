@@ -60,4 +60,10 @@ class UserController extends Controller
 
         return back();
     }
+
+    public function show()
+    {
+        $user = Auth::user();
+        return view('user_show', compact('user'));
+    }
 }

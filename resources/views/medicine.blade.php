@@ -7,6 +7,26 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h1>Medicine</h1>
+    @if (sizeof($medicines) > 0)
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Form</th>
+                <th>Stock</th>
+                <th>Price</th>
+            </tr>
+            @foreach ($medicines as $medicine)
+                <tr>
+                    <td>{{$medicine->name}}</td>
+                    <td>{{$medicine->form}}</td>
+                    <td>{{$medicine->stock}}</td>
+                    <td>{{$medicine->price}}</td>
+                </tr>
+            @endforeach
+        </table>
+    @else
+        
+    @endif
 </body>
 </html>

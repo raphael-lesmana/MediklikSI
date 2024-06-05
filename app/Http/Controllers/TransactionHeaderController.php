@@ -58,11 +58,13 @@ class TransactionHeaderController extends Controller
     {
         $transaction->receptionist_id = Auth::id();
         $transaction->payment_type = $request->payment_type;
-        $transaction->completed = $request->completed == 'ON';
+        $transaction->completed = isset($request->completed);
         $transaction->save();
         $n = $request->service_count;
         for ($i = 0; $i < $n; $i++)
         {
+            if ($request['service_' . $i] == "")
+                continue;
             ServiceTransaction::create([
                 'transaction_header_id' => $transaction->id,
                 'service_description' => $request['service_' . $i],

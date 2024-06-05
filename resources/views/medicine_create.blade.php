@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    Patient create test
+    Medicine create test
     <form action={{route('medicine.index')}} method="POST">
         @csrf
         <input type="text" name="name" id=""><label for="name">Name</label><br>
