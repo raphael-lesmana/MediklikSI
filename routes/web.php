@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'dashboard_index'])->name('dashboard');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
     Route::get('/profile', [UserController::class, 'show'])->name('profile');
+    Route::get('/profile/edit', [UserController::class, 'profile_edit'])->name('profile_edit');
     Route::get('/queue/current', [QueueController::class, 'current'])->name('queue.current');
     Route::post('/queue/current', [QueueController::class, 'finish_current'])->name('queue.current');
     Route::resource('patient', PatientController::class);

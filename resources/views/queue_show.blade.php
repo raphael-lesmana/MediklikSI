@@ -8,6 +8,15 @@
     <title>Queue Information</title>
 </head>
 <body>
+    <div>
+        @if (isset($error))
+            <ul>
+                @foreach ($error as $error_message)
+                    <li>{{$error_message}}</li>
+                @endforeach
+            </ul>
+        @endif
+    </div>
     <ul>
         <li>Queue ID: {{$queue->patient->name}}</li>
         <li>Waiting since: {{$queue->updated_at}}</li>
@@ -90,7 +99,7 @@
                 @foreach ($medicines as $medicine)
                     <option value={{$medicine->id}}>{{$medicine->name}}</option>
                 @endforeach
-            </select><input type="text" name="dose_0" id="" placeholder="dose"><input type="text" name="amount_0" id="" placeholder="amount"><button id="add_prescription" type="button">+</button>
+            </select><input type="number" name="amount_0" id="" placeholder="amount"><input type="text" name="dose_0" id="" placeholder="dose"><button id="add_prescription" type="button">+</button>
         </fieldset>
         <button type="submit">Create medical report</button>
     </form>
@@ -112,13 +121,13 @@
                     placeholder: "dose"
                 });
                 amount.attr({
-                    type: "text",
+                    type: "number",
                     name: "amount_" + cur_idx,
                     placeholder: "amount"
                 });
                 $('#prescription_count').attr('value', ++cur_idx);
                 $('#medicine_0 option').clone().appendTo(medicine_select);
-                $('#add_prescription').before("<br>", medicine_select, dose, amount);
+                $('#add_prescription').before("<br>", medicine_select, amount, dose);
             });
         });
     </script>

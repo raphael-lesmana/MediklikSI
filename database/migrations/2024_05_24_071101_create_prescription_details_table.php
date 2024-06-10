@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('prescription_header_id')->constrained();
             $table->foreignId('medicine_id')->constrained();
+            $table->integer('amount');
             $table->string('dose');
-            $table->string('amount');
             $table->timestamps();
         });
     }
