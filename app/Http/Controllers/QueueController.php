@@ -73,7 +73,7 @@ class QueueController extends Controller
     {
         if ($current)
         {
-            $medicines = Medicine::all();
+            $medicines = Medicine::where('stock', '>', 0)->get();
             return view('queue_show', compact('queue', 'current', 'medicines'));
         }
         else
@@ -118,14 +118,27 @@ class QueueController extends Controller
                 'medical_report_id' => $medical_report->id,
                 'status' => 'Pending',
             ]);
+            $page_errors = [];
             for ($i = 0; $i < $n; $i++)
             {
+                $medicine = Medicine::find($request['medicine_' . $i]);
+                if ($medicine->stock < $request['amount_' . $i]) {
+                    $page_errors['medicine_' . $i] = 'Not enough ' . $medicine->name;
+                    continue;
+                }
+                $medicine->stock -= $request['amount_' . $i];
+                $medicine->save();
                 PrescriptionDetails::create([
                     'prescription_header_id' => $prescription_header->id,
-                    'medicine_id' => $request['medicine_' . $i],
+                    'medicine_id' => $medicine->id,
                     'dose' => $request['dose_' . $i],
                     'amount' => $request['amount_' . $i],
                 ]);
+            }
+
+            if (sizeof($page_errors) > 0)
+            {
+                return back()->withErrors($page_errors);
             }
         }
         TransactionHeader::create([

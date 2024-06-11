@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -65,5 +66,26 @@ class UserController extends Controller
     {
         $user = Auth::user();
         return view('user_show', compact('user'));
+    }
+
+    public function edit()
+    {
+        return view('user_edit');
+    }
+
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+        $password = $user->password;
+
+        if (!Hash::check($request->cur_password, $password))
+        {
+            return back()->withErrors(["wrongPassword" => "Password Incorrect"]);
+        }
+
+        $user->password = $request->new_password;
+        $user->email = $request->email;
+        $user->save();
+        return redirect()->route('profile');
     }
 }
