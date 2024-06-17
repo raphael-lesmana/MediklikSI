@@ -23,7 +23,7 @@
                 </div>
                 <p class="d-flex" style="justify-content: right">Forgot your password?</p>
                 <div class="d-flex mb-3" style="justify-content: center">
-                    <button type="submit">Login</button>
+                    <button type="submit" class="btn btn-secondary">Login</button>
                 </div>
             </form>
         </div>

@@ -6,14 +6,20 @@
 @section('content')
 <div style="margin-top: 10vh">
     
-    <div class="d-flex mb-3" style="justify-content: center">
+    <div>
     @if (Gate::allows('doctor') && empty($current_queue))
-        <h1>Not currently processing any queue</h1>
+        <div class="d-flex mb-3" style="justify-content: center">
+            <h1>Not currently processing any queue</h1>
+        </div>
     @elseif (Gate::allows('doctor') && !empty($current_queue))
-        <h1>Currently serving</h1>
-        <ul>
-            <li><a href="{{route('queue.current')}}">{{$current_queue->queue->patient->name}}</a></li>
-        </ul>
+        <div class="d-flex mb-3" style="justify-content: center">
+            <h1>Currently serving</h1>
+        </div>
+        <div style="margin-left: 25vw">
+            <ul>
+                <li><a style="color: white" href="{{route('queue.current')}}">{{$current_queue->queue->patient->name}}</a></li>
+            </ul>
+        </div>
     @elseif (Gate::allows('receptionist'))
         <a href="/queue/create" style="color: white">Create new queue</a>
     @endif
@@ -55,7 +61,9 @@
         <form action={{route('queue.index')}} method="post">
             @csrf
             <input type="hidden" name="action" value="next">
-            <button type="submit">Next queue</button>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-secondary">Next queue</button>
+            </div>
         </form>
     @endif
     
