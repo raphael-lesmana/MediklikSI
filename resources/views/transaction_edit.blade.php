@@ -1,36 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <title>Document</title>
-</head>
-<body>
-    <h1>Edit transaction</h1>
-    <form action="{{route('transaction_header.update', ['transaction' => $transaction])}}" method="POST">
-        @method('PATCH')
-        @csrf
-        <fieldset>
-            <label for="completed">Completed: </label>
-            <input type="checkbox" name="completed" id="" @checked($transaction->completed)><br>
-            <label for="payment_method">Payment method: </label>
-            <select name="payment_method" id="" value="{{$transaction->payment_method}}">
-                <option value="Credit" @selected($transaction->payment_method == 'Credit')>Credit</option>
-                <option value="Debit" @selected($transaction->payment_method == 'Debit')>Debit</option>
-                <option value="Cash" @selected($transaction->payment_method == 'Cash')>Cash</option>
-            </select>
-        </fieldset>
-        <fieldset>
-            <input type="hidden" name="service_count" id="service_count" value="1">
-            <label for="service_0">Service description:</label>
-            <input type="text" name="service_0" id="">
-            <label for="price_0">Service price:</label>
-            <input type="number" name="price_0" id=""><button id="add_service" type="button">+</button><br>
-        </fieldset>
-        <button type="submit">Submit</button>
-    </form>
+@extends('template.file')
+@extends('template.background')
+
+@section('title', 'Transaction Information')
+
+@section('content')
+    <div class="d-flex justify-content-center mt-3 mb-2">
+        <h1>Edit Transaction</h1>
+    </div>
+
+    <div style="padding-left: 25vw; padding-right: 25vw;">
+        <form action="{{route('transaction_header.update', ['transaction' => $transaction])}}" method="POST">
+            @method('PATCH')
+            @csrf
+            <table class="table table-borderless">
+                <tr class = "table-dark table-bordered">
+                    <td class = "table-dark table-bordered">
+                        <label for="completed">Completed</label></td>
+                    <td class = "table-dark table-bordered">
+                        <input type="checkbox" name="completed" id="" @checked($transaction->completed)></td>
+                </tr>
+
+                <tr class = "table-dark table-bordered">
+                    <td class = "table-dark table-bordered">
+                        <label for="payment_method">Payment method</label></td>
+                    <td class = "table-dark table-bordered">
+                        <select name="payment_method" id="" value="{{$transaction->payment_method}}">
+                            <option value="Credit" @selected($transaction->payment_method == 'Credit')>Credit</option>
+                            <option value="Debit" @selected($transaction->payment_method == 'Debit')>Debit</option>
+                            <option value="Cash" @selected($transaction->payment_method == 'Cash')>Cash</option>
+                        </select></td>
+                </tr>
+            </table>
+
+            <fieldset>
+                <input type="hidden" name="service_count" id="service_count" value="1">
+
+                <div class="mb-1 row">
+                    <label for="service_0" class="col-sm-2 col-form-label">Service Description</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="service_0" id="">
+                    </div>
+                </div>
+
+                <div class="mb-1 row">
+                    <label for="price_0" class="col-sm-2 col-form-label">Service Price</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="price_0" id=""><button id="add_service" type="button">+</button>
+                    </div>
+                </div>
+                
+            </fieldset>
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-secondary" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
 
     <script>
         $(document).ready(function(){
@@ -57,5 +81,4 @@
             });
         });
     </script>
-</body>
-</html>
+@endsection
