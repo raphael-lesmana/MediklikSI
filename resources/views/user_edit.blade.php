@@ -1,19 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Update profile</h1>
+@extends('template.file')
+@extends('template.background')
+
+@section('title', 'Update Profile')
+
+@section('content')
+
+<div class="d-flex justify-content-center mt-3 mb-2">
+    <h1>Update Profile</h1>
+</div>
+
+<div class="d-flex" style="padding-left: 15vw; padding-right: 15vw;">
     <form action="" method="post">
         @csrf
-        <label for="email">New email: </label><input type="email" name="email" id=""><br>
-        <label for="new_password">New password: </label><input type="password" name="new_password" id=""><br>
-        <label for="cur_password">Current password: </label><input type="password" name="cur_password" id=""><br>
-        <button type="submit">Update</button>
+
+        <table class="table table-borderless">
+            <tr class = "table-dark table-bordered">
+                <td class = "table-dark table-bordered">
+                    <label for="email">New Email</label></td>
+                <td class = "table-dark table-bordered">
+                    <input type="email" name="email" id=""></td>
+            </tr>
+
+            <tr class = "table-dark table-bordered">
+                <td class = "table-dark table-bordered">
+                    <label for="new_password">New Password</label></td>
+                <td class = "table-dark table-bordered">
+                    <input type="password" name="new_password" id=""></td>
+            </tr>
+
+            <tr class = "table-dark table-bordered">
+                <td class = "table-dark table-bordered">
+                    <label for="cur_password">Current Password</label></td>
+                <td class = "table-dark table-bordered">
+                    <input type="password" name="cur_password" id=""></td>
+            </tr>
+        </table>
+        
+        <div class="d-flex justify-content-center mt-3 mb-2">
+            <button class="btn btn-secondary" type="submit">Update</button>   
+        </div>
+        
     </form>
-</body>
-</html>
+</div>
+    
+
+@endsection

@@ -38,7 +38,7 @@
                     <td class = "table-dark table-bordered">{{$queue->staff()->first()->full_name}}</td>
                 </tr>
                 @endforeach
-            @elseif (Gate::allows('doctor'))
+            @elseif (Gate::allows('doctor') && !empty($queue))
                 <tr class = "table-dark table-bordered">
                     <td class = "table-dark table-bordered">Patient's Name</td>
                     <td class = "table-dark table-bordered">Doctor's Name</td>
