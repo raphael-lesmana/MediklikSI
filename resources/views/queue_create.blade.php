@@ -6,14 +6,14 @@
 @section('content')
 <div class="mt-5">
     <div class="d-flex justify-content-center mb-3">
-        <h1>Add patient to queue</h1>
+        <h1>Add Patient to Queue</h1>
     </div>    
 
     <div class="d-flex justify-content-center">
         <form action={{route('queue.index')}} method="POST">
             @csrf
             <input type="text" name="patient_id" id="" placeholder="name">
-            <select name="staff_id" id="">
+            <select name="staff_id" id="" style="height: 30px">
                 @foreach ($staff as $staff_member)
                     <option value={{$staff_member->id}}>{{$staff_member->full_name}}</option>
                 @endforeach
