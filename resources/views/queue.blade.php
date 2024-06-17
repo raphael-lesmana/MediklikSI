@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('template.file')
+@extends('template.background')
+
+@section('title', 'Queue')
+
+@section('content')
+<div>
+    
+    <div class="d-flex" style="justify-content: center">
     @if (Gate::allows('doctor') && empty($current_queue))
         <h1>Not currently processing any queue</h1>
     @elseif (Gate::allows('doctor') && !empty($current_queue))
@@ -15,28 +15,33 @@
             <li><a href="{{route('queue.current')}}">{{$current_queue->queue->patient->name}}</a></li>
         </ul>
     @elseif (Gate::allows('receptionist'))
-        <a href="/queue/create">Create new queue</a>
+        <a href="/queue/create" style="color: white">Create new queue</a>
     @endif
-    <table>
-        @if (Gate::allows('receptionist') || Gate::allows('admin'))
-            @foreach ($queues as $queue)
-            <tr>
-                <td>{{$queue->patient()->first()->name}}</td>
-                <td>{{$queue->staff()->first()->full_name}}</td>
-            </tr>
-            @endforeach
-        @elseif (Gate::allows('doctor'))
-            @foreach ($queues as $queue)
-                @if ($queue->staff_id == Auth::id())
-                    <tr>
-                        <td>{{$queue->patient()->first()->name}}</td>
-                        <td>{{$queue->staff()->first()->full_name}}</td>
-                        <td>{{$queue->created_at}}</td>
-                    </tr>
-                @endif
-            @endforeach
-        @endif
-    </table>
+    </div>
+
+    <div class="d-flex">
+        <table class = "table-dark table-bordered table">
+            @if (Gate::allows('receptionist') || Gate::allows('admin'))
+                @foreach ($queues as $queue)
+                <tr class = "table-dark table-bordered">
+                    <td class = "table-dark table-bordered">{{$queue->patient()->first()->name}}</td>
+                    <td class = "table-dark table-bordered">{{$queue->staff()->first()->full_name}}</td>
+                </tr>
+                @endforeach
+            @elseif (Gate::allows('doctor'))
+                @foreach ($queues as $queue)
+                    @if ($queue->staff_id == Auth::id())
+                        <tr class = "table-dark table-bordered">
+                            <td class = "table-dark table-bordered">{{$queue->patient()->first()->name}}</td>
+                            <td class = "table-dark table-bordered">{{$queue->staff()->first()->full_name}}</td>
+                            <td class = "table-dark table-bordered">{{$queue->created_at}}</td>
+                        </tr>
+                    @endif
+                @endforeach
+            @endif
+        </table>
+    </div>
+
     @if (Gate::allows('doctor') && empty($current_queue))
         <form action={{route('queue.index')}} method="post">
             @csrf
@@ -44,5 +49,6 @@
             <button type="submit">Next queue</button>
         </form>
     @endif
-</body>
-</html>
+    
+
+</div>
