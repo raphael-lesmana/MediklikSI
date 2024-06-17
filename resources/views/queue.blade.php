@@ -4,9 +4,9 @@
 @section('title', 'Queue')
 
 @section('content')
-<div>
+<div style="margin-top: 10vh">
     
-    <div class="d-flex" style="justify-content: center">
+    <div class="d-flex mb-3" style="justify-content: center">
     @if (Gate::allows('doctor') && empty($current_queue))
         <h1>Not currently processing any queue</h1>
     @elseif (Gate::allows('doctor') && !empty($current_queue))
@@ -19,9 +19,13 @@
     @endif
     </div>
 
-    <div class="d-flex">
+    <div class="d-flex" style="padding-left: 15vw; padding-right: 15vw;">
         <table class = "table-dark table-bordered table">
             @if (Gate::allows('receptionist') || Gate::allows('admin'))
+                <tr class = "table-light table-bordered">
+                    <td class = "table-light table-bordered">Patient's Name</td>
+                    <td class = "table-light table-bordered">Doctor's Name</td>
+                </tr>
                 @foreach ($queues as $queue)
                 <tr class = "table-dark table-bordered">
                     <td class = "table-dark table-bordered">{{$queue->patient()->first()->name}}</td>
@@ -29,6 +33,11 @@
                 </tr>
                 @endforeach
             @elseif (Gate::allows('doctor'))
+                <tr class = "table-dark table-bordered">
+                    <td class = "table-dark table-bordered">Patient's Name</td>
+                    <td class = "table-dark table-bordered">Doctor's Name</td>
+                    <td class = "table-dark table-bordered">Queue Time</td>
+                </tr>
                 @foreach ($queues as $queue)
                     @if ($queue->staff_id == Auth::id())
                         <tr class = "table-dark table-bordered">
