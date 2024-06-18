@@ -26,6 +26,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route("patient")}}">Patient</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route("logout")}}">Logout</a>
+                        </li>
                     </ul>
                 </div>
             </div>
