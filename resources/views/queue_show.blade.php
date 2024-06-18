@@ -206,7 +206,7 @@
             </fieldset>
             
             <div class="d-flex justify-content-center mt-3">
-                <button class="btn btn-secondary" type="submit">Create medical report</button>
+                <button class="btn btn-secondary" type="submit" id="add_prescription">Create medical report</button>
             </div>
         </form>
         @endif
@@ -220,16 +220,19 @@
                 let dose = $("<input></input>");
                 let amount = $("<input></input>");
                 medicine_select.attr({
-                    name: 'medicine_' + cur_idx
+                    name: "medicine_" + cur_idx,
+                    style: "margin-right: 1vw"
                 });
                 dose.attr({
                     type: "text",
                     name: "dose_" + cur_idx,
+                    style: "margin-right: 1vw",
                     placeholder: "dose"
                 });
                 amount.attr({
                     type: "number",
                     name: "amount_" + cur_idx,
+                    style: "margin-right: 1vw",
                     placeholder: "amount"
                 });
                 $('#prescription_count').attr('value', ++cur_idx);

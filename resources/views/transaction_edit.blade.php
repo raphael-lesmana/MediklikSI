@@ -32,19 +32,19 @@
                 </tr>
             </table>
 
-            <fieldset>
+            <fieldset id="service_fieldset">
                 <input type="hidden" name="service_count" id="service_count" value="1">
 
-                <div class="mb-1 row">
+                <div class="mb-1 row" id="service_0">
                     <label for="service_0" class="col-sm-2 col-form-label">Service Description</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="service_0" id="">
                     </div>
                 </div>
 
-                <div class="mb-1 row">
+                <div class="mb-1 row" id="price_0">
                     <label for="price_0" class="col-sm-2 col-form-label">Service Price</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-10 button-div" id="button_div">
                         <input type="text" class="form-control" name="price_0" id=""><button id="add_service" type="button">+</button>
                     </div>
                 </div>
@@ -60,24 +60,34 @@
         $(document).ready(function(){
             let cur_idx = 1;
             $("#add_service").click(function(){
-                let service_label = $("<label>Service description: </label>");
-                let service_input = $("<input type=\"text\">");
-                let price_label = $("<label>Service price: </label>");
-                let price_input = $("<input type=\"number\">");
-                service_label.attr({
-                    for: "service_" + cur_idx,
+                console.log("hi");
+                let service_div = $("#service_" + (cur_idx-1)).clone();
+                let button = $("#add_service");
+                $(service_div).find("input").attr({
+                    name: "service_" + cur_idx
                 });
-                price_label.attr({
-                    for: "price_" + cur_idx,
+                $(service_div).find("label").attr({
+                    for: "service_" + cur_idx
                 });
-                service_input.attr({
-                    name: "service_" + cur_idx,
+                service_div.attr({
+                    id: "service_" + cur_idx
                 });
-                price_input.attr({
-                    for: "price_" + cur_idx,
+
+                let price_div = $("#price_" + (cur_idx-1)).clone();
+                $(price_div).find("input").attr({
+                    name: "price_" + cur_idx
                 });
+                $(price_div).find("label").attr({
+                    for: "service_" + cur_idx
+                });
+                $(price_div).find("button").remove()
+                price_div.attr({
+                    id: "price_" + cur_idx
+                });
+
+                $(price_div).find(".button-div").append(button);
                 $('#service_count').attr('value', ++cur_idx);
-                $('#add_service').before("<br>", service_label, service_input, price_label, price_input);
+                $('#service_fieldset').append(service_div, price_div);
             });
         });
     </script>
