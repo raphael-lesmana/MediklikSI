@@ -111,6 +111,12 @@ class QueueController extends Controller
 
     public function finish_current(Request $request)
     {
+        $request->validate([
+            'symptoms' => 'required',
+            'diagnosis' => 'required',
+            'suggestion' => 'required',
+        ]);
+
         $current_userqueue = Auth::user()->userqueue; 
         $current_queue = $current_userqueue->queue;
         $medical_report = MedicalReport::create([

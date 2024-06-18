@@ -23,8 +23,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', [UserController::class, 'login_index'])->name('login');
 Route::post('/login', [UserController::class, 'login'])->name('login');
 
+Route::middleware([])->group(function () {
+    Route::get('/', function () {
+        if (auth()->check()) {
+            return redirect()->route('dashboard');
+        } else {
+            return redirect()->route('login');
+        }
+    });
+});
+
 Route::middleware(['auth'])->group(function() {
-    Route::redirect('/', '/dashboard');
     Route::get('/dashboard', [DashboardController::class, 'dashboard_index'])->name('dashboard');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
     Route::get('/profile', [UserController::class, 'show'])->name('profile');
