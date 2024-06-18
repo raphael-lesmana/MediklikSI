@@ -7,7 +7,7 @@
 <div class="row" style="height: 100vh">
 
     <div class="col">
-        foto
+        <img src="../assets/logo.png" alt="Logo" style="width: 50 vw">
     </div>
 
     <div class="col d-flex" style="background-color: #285386; color: white;  align-items: center; justify-content: center">
