@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MedicalReport;
 use App\Models\Medicine;
+use App\Models\Patient;
 use App\Models\PrescriptionDetails;
 use App\Models\PrescriptionHeader;
 use App\Models\Queue;
@@ -32,6 +33,13 @@ class QueueController extends Controller
         if ($action == 'next')
         {
             $current_queue = Queue::orderBy('updated_at')->first();
+            if (!isset($current_queue))
+            {
+                return redirect()->back()->withErrors([
+                    "no_queue" => "The queue is empty",
+                ]); 
+            }
+
             UserQueue::create([
                 'queue_id' => $current_queue->id,
                 'user_id' => Auth::id(),
@@ -62,6 +70,15 @@ class QueueController extends Controller
             'patient_id' => 'required',
             'staff_id' => 'required',
         ]);
+
+        $patient = Patient::find($request->patient_id);
+        if (!isset($patient))
+        {
+            return back()->withErrors([
+                "patient" => "Patient not found."
+            ]);
+        }
+
         Queue::create($param);
         return redirect()->route('queue.index');
     }

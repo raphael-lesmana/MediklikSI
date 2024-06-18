@@ -7,11 +7,11 @@
 <div style="margin-top: 10vh">
     
     <div>
-    @if (Gate::allows('doctor') && empty($current_queue))
+    @if (Gate::allows('doctor') && !isset($current_queue))
         <div class="d-flex mb-3" style="justify-content: center">
             <h1>Not currently processing any queue</h1>
         </div>
-    @elseif (Gate::allows('doctor') && !empty($current_queue))
+    @elseif (Gate::allows('doctor') && isset($current_queue))
         <div class="d-flex mb-3" style="justify-content: center">
             <h1>Currently serving</h1>
         </div>

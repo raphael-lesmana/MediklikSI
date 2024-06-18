@@ -78,6 +78,10 @@ class UserController extends Controller
         $user = Auth::user();
         $password = $user->password;
 
+        $request->validate([
+            'cur_password' => 'required',
+        ]);
+
         if (!Hash::check($request->cur_password, $password))
         {
             return back()->withErrors(["wrongPassword" => "Password Incorrect"]);
