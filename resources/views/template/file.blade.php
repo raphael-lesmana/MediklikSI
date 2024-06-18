@@ -18,13 +18,13 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{route("queue")}}">Queue</a>
+                            <a class="nav-link active" aria-current="page" href="{{route("queue.index")}}">Queue</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route("transaction")}}">Transaction</a>
+                            <a class="nav-link" href="{{route("transaction_header.index")}}">Transaction</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route("patient")}}">Patient</a>
+                            <a class="nav-link" href="{{route("patient.index")}}">Patient</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route("logout")}}">Logout</a>
