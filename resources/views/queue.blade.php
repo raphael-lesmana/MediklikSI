@@ -25,7 +25,7 @@
     @endif
     
 
-    @if(!empty($queue))
+    @if(isset($queues))
     <div class="d-flex" style="padding-left: 15vw; padding-right: 15vw;">
         <table class = "table-dark table-bordered table">
             @if (Gate::allows('receptionist') || Gate::allows('admin'))
@@ -39,7 +39,7 @@
                     <td class = "table-dark table-bordered">{{$queue->staff()->first()->full_name}}</td>
                 </tr>
                 @endforeach
-            @elseif (Gate::allows('doctor') && !empty($queue))
+            @elseif (Gate::allows('doctor'))
                 <tr class = "table-dark table-bordered">
                     <td class = "table-dark table-bordered">Patient's Name</td>
                     <td class = "table-dark table-bordered">Doctor's Name</td>
