@@ -13,7 +13,7 @@
         @if (sizeof($transactions) > 0)
             <ul>
                 @foreach ($transactions as $transaction)
-                    <li>{{$transaction->id}} {{$transaction->patient->name}}</li>
+                    <li><a href="{{route('transaction_header', ['id' => $transaction->id])}}">{{$transaction->id}} {{$transaction->patient->name}}</a></li>
                 @endforeach
             </ul>
         @else
