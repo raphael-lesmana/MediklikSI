@@ -25,6 +25,7 @@
     @endif
     </div>
 
+    @if(!empty($queue))
     <div class="d-flex" style="padding-left: 15vw; padding-right: 15vw;">
         <table class = "table-dark table-bordered table">
             @if (Gate::allows('receptionist') || Gate::allows('admin'))
@@ -56,6 +57,7 @@
             @endif
         </table>
     </div>
+    @endif
 
     @if (Gate::allows('doctor') && empty($current_queue))
         <form action={{route('queue.index')}} method="post">
