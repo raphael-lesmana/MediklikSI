@@ -34,7 +34,7 @@ Route::middleware([])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function() {
-    Route::get('/dashboard', [DashboardController::class, 'dashboard_index'])->name('dashboard');
+    Route::redirect('/dashboard', '/queue')->name('dashboard');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
     Route::get('/profile', [UserController::class, 'show'])->name('profile');
     Route::get('/profile/edit', [UserController::class, 'profile_edit'])->name('profile_edit');
