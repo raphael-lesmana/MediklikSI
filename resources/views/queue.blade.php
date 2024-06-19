@@ -4,9 +4,8 @@
 @section('title', 'Queue')
 
 @section('content')
-<div style="margin-top: 10vh">
+<div style="margin-top: 10vh; margin-left: 2vw">
     
-    <div>
     @if (Gate::allows('doctor') && !isset($current_queue))
         <div class="d-flex mb-3" style="justify-content: center">
             <h1>Not currently processing any queue</h1>
@@ -15,6 +14,7 @@
         <div class="d-flex mb-3" style="justify-content: center">
             <h1>Currently serving</h1>
         </div>
+
         <div style="margin-left: 25vw">
             <ul>
                 <li><a style="color: white" href="{{route('queue.current')}}">{{$current_queue->queue->patient->name}}</a></li>
@@ -23,7 +23,7 @@
     @elseif (Gate::allows('receptionist'))
         <a href="/queue/create" style="color: white">Create new queue</a>
     @endif
-    </div>
+    
 
     @if(!empty($queue))
     <div class="d-flex" style="padding-left: 15vw; padding-right: 15vw;">
@@ -68,6 +68,5 @@
             </div>
         </form>
     @endif
-    
-
 </div>
+@endsection
