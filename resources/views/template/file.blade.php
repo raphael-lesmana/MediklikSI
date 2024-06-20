@@ -26,6 +26,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route("patient.index")}}">Patient</a>
                         </li>
+                        @if (Gate::allows('admin'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route("register")}}">Register</a>
+                        </li>
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link" href="{{route("logout")}}">Logout</a>
                         </li>
